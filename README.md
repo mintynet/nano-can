@@ -10,6 +10,7 @@ This repository has the arduino code for use with nano can PCB.
 <br>U and D will change the CAN ID up or down by 16
 <br>h shows the above information
 
+<br><b>Schematic</b>
 ![PCB Schematic](Schematic_nano-can-pcb.png)
 Note:
 <br>Arduino Nano goes on the top with the URL on.
@@ -19,13 +20,13 @@ Note:
 ![MCP2515](mcp2515.JPG)
 <br>L goes to OBD2 pin 14
 <br>H goes to OBD2 pin 6
-<br>Completed Top
+<br><b>Completed Top</b>
 ![Completed TOP](top-complete.jpg)
-<br>Completed Bottom
+<br><b>Completed Bottom</b>
 ![Completed BOTTOM](bottom-complete.jpg)
-<br>OBD2 connector
+<br>,b>OBD2 connector</b>
 ![OBD2 connector](obd2-connector.jpg)
-<br>PCB Top<br>
+<br><b>PCB Top</b><br>
 ![PCB TOP](top-gerber.JPG)
-<br>PCB Bottom<br>
+<br><b>PCB Bottom</b><br>
 ![PCB BOTTOM](bottom-gerber.JPG)
