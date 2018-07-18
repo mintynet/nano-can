@@ -10,6 +10,6 @@ This repository has the arduino code for use with nano can PCB.
 <br>U and D will change the CAN ID up or down by 16
 <br>h shows the above information
 
-![PCH Schematic](Schematic_nano-can-pcb.png)
-![PCB TOP](top-berber.JPG)
-![PCB BOTTOM](bottom-berber.JPG)
+![PCB Schematic](Schematic_nano-can-pcb.png)
+![PCB TOP](top-gerber.JPG)
+![PCB BOTTOM](bottom-gerber.JPG)
