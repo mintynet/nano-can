@@ -17,5 +17,11 @@ Note:
 <br>MCP2515 Module goes on the bottom but DO NOT solder the Terminator Jumper or CAN pin headers to the PCB
 <br>You may require a jumper on the Terminator resistor
 ![MCP2515](mcp2515.JPG)
+Completed Top
+![Completed TOP](top-complete.jpg)
+Completed Bottom
+![Completed BOTTOM](bottom-complete.jpg)
+PCB Top
 ![PCB TOP](top-gerber.JPG)
+PCB Bottom
 ![PCB BOTTOM](bottom-gerber.JPG)
