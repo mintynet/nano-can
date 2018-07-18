@@ -17,6 +17,8 @@ Note:
 <br>MCP2515 Module goes on the bottom but DO NOT solder the Terminator Jumper or CAN pin headers to the PCB
 <br>You may require a jumper on the Terminator resistor
 ![MCP2515](mcp2515.JPG)
+<br>L goes to OBD2 pin 14
+<br>H goes to OBD2 pin 6
 <br>Completed Top
 ![Completed TOP](top-complete.jpg)
 <br>Completed Bottom
