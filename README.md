@@ -21,6 +21,8 @@ Note:
 ![Completed TOP](top-complete.jpg)
 <br>Completed Bottom
 ![Completed BOTTOM](bottom-complete.jpg)
+<br>OBD2 connector
+![OBD2 connector](obd2-connector.jpg)
 <br>PCB Top
 ![PCB TOP](top-gerber.JPG)
 <br>PCB Bottom
