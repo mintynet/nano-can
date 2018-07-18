@@ -11,5 +11,11 @@ This repository has the arduino code for use with nano can PCB.
 <br>h shows the above information
 
 ![PCB Schematic](Schematic_nano-can-pcb.png)
+Note:
+<br>Arduino Nano goes on the top with the URL on.
+![Arduino Nano](arduino-nano.jpg)
+<br>MCP2515 Module goes on the bottom but DO NOT solder the Terminator Jumper or CAN pin headers to the PCB
+<br>You may require a jumper on the Terminator resistor
+![MCP2515](mcp2515.jpg)
 ![PCB TOP](top-gerber.JPG)
 ![PCB BOTTOM](bottom-gerber.JPG)
