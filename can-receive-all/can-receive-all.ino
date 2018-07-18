@@ -1,5 +1,5 @@
 //
-// CAN Receive Message diff
+// CAN Receive Example
 //
 
 #include <mcp_can.h>                            // version 24/03/17 from https://github.com/coryjfowler/MCP_CAN_lib
