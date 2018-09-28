@@ -46,65 +46,108 @@ void setup()
 
 //----------------------------------------------------------------
 
-static void serialMenu() {
-  if (Serial.available()) {
-    char ser = Serial.read();
-    switch (ser)
-    {
-      case 'u':     // increase CANID by 1
+void pars_CANID(char *buf) 
+{
+  long unsigned int calcRxId = 0;
+  switch (buf[0])
+  {
+    case 'u':     // increase CANID by 1
+      for (byte i = 0; i<len; i++) {
+        rxBuf[i] = 0;
+        prevrxBuf[i] = 0;
+      }
+      reqRxId++;
+      Serial.print("ID:0x");
+      Serial.println(reqRxId,HEX);
+      break;
+    case 'd':     // decrease CANID by 1
+      for (byte i = 0; i<len; i++) {
+        rxBuf[i] = 0;
+        prevrxBuf[i] = 0;
+      }
+      reqRxId--;
+      Serial.print("ID:0x");
+      Serial.println(reqRxId,HEX);
+      break;
+    case 'U':     // increase CANID by 16
+      for (byte i = 0; i<len; i++) {
+        rxBuf[i] = 0;
+        prevrxBuf[i] = 0;
+      }
+      reqRxId=reqRxId + 16;
+      Serial.print("ID:0x");
+      Serial.println(reqRxId,HEX);
+      break;
+    case 'D':     // decrease CANID by 16
+      for (byte i = 0; i<len; i++) {
+        rxBuf[i] = 0;
+        prevrxBuf[i] = 0;
+      }
+      reqRxId=reqRxId - 16;
+      Serial.print("ID:0x");
+      Serial.println(reqRxId,HEX);
+      break;
+    case 'h':     // display help
+      dispHelp();
+      break;
+    case '0':     // hex number
+      buf[0] = '0';
+      buf[1] = '0';
+      calcRxId = strtol(buf, NULL, HEX);
+      //Serial.print("calc:0x");
+      //Serial.println(calcRxId);
+      if (calcRxId == 0) {
+        Serial.println("Error");
+      } else if (calcRxId < 0x1FFFFFFF) {
         for (byte i = 0; i<len; i++) {
-          rxBuf[i] = 0;
-          prevrxBuf[i] = 0;
+         rxBuf[i] = 0;
+         prevrxBuf[i] = 0;
         }
-        reqRxId++;
+        reqRxId=calcRxId;
         Serial.print("ID:0x");
         Serial.println(reqRxId,HEX);
-        break;
-      case 'd':     // decrease CANID by 1
-        for (byte i = 0; i<len; i++) {
-          rxBuf[i] = 0;
-          prevrxBuf[i] = 0;
-        }
-        reqRxId--;
+      } else {
+        Serial.println("Error");
         Serial.print("ID:0x");
         Serial.println(reqRxId,HEX);
-        break;
-      case 'U':     // increase CANID by 16
+      }
+      break;
+    case 'n':     // dec number
+      buf[0] = '0';
+      calcRxId = strtol(buf, NULL, DEC);
+      //Serial.print("calc:0x");
+      //Serial.println(calcRxId);
+      if (calcRxId == 0) {
+        Serial.println("Error");
+      } else if (calcRxId < 0x1FFFFFFF) {
         for (byte i = 0; i<len; i++) {
-          rxBuf[i] = 0;
-          prevrxBuf[i] = 0;
+         rxBuf[i] = 0;
+         prevrxBuf[i] = 0;
         }
-        reqRxId=reqRxId + 16;
+        reqRxId=calcRxId;
         Serial.print("ID:0x");
         Serial.println(reqRxId,HEX);
-        break;
-      case 'D':     // decrease CANID by 16
-        for (byte i = 0; i<len; i++) {
-          rxBuf[i] = 0;
-          prevrxBuf[i] = 0;
-        }
-        reqRxId=reqRxId - 16;
+      } else {
+        Serial.println("Error");
         Serial.print("ID:0x");
         Serial.println(reqRxId,HEX);
-        break;
-      case 'h':     // display help
-        dispHelp();
-        break;
-      default:
-        break;
-    }
+      }
+    default:
+      break;
   }
-} //serialMenu()
+} //pars_CANID()
 
 //----------------------------------------------------------------
 
 static void dispHelp() {
   Serial.println(F("\n\tInstructions\n"));
-  Serial.println(F("\td   : CANID -1"));
-  Serial.println(F("\tD   : CANID -16"));
-  Serial.println(F("\tu   : CANID +1"));
-  Serial.println(F("\tU   : CANID +16"));
-  Serial.println(F("\th   : display help\n"));
+  Serial.println(F("\td                 : CANID -1"));
+  Serial.println(F("\tD                 : CANID -16"));
+  Serial.println(F("\tu                 : CANID +1"));
+  Serial.println(F("\tU                 : CANID +16"));
+  Serial.println(F("\t0x1FFFFFFF(MAX)   : 29bit CANID in HEX"));
+  Serial.println(F("\tn536870911(MAX)   : 29bit CANID in DEC"));
+  Serial.println(F("\th                 : display help\n"));
   Serial.print(F("\tCANID: 0x"));
   if (reqRxId<16) {
     Serial.print(F("00"));
@@ -116,9 +159,33 @@ static void dispHelp() {
 
 //----------------------------------------------------------------
 
+void change_CANID()
+{
+  int ser_length;
+  static char idbuf[12];
+  static int ididx = 0;
+  if ((ser_length = Serial.available()) > 0) {
+    for (int i = 0; i < ser_length; i++) {
+      char val = Serial.read();
+      idbuf[ididx++] = val;
+      if (ididx == 12)
+      {
+        ididx = 0;
+        Serial.println("Data too long");
+      } else if (val == '\r') {
+        idbuf[ididx] = '\0';
+        pars_CANID(idbuf);
+        ididx = 0;
+      }      
+    }
+  }
+} // change_CANID()
+
+//----------------------------------------------------------------
+
 void loop()
 {
-  serialMenu();
+  change_CANID();
   if(!digitalRead(CAN0_INT))                        // If CAN0_INT pin is low, read receive buffer
   {
     CAN0.readMsgBuf(&rxId, &len, rxBuf);            // Read data: len = data length, buf = data byte(s)
