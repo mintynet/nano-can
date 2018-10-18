@@ -1,5 +1,5 @@
 //
-// CAN Receive Example
+// CAN Receive All
 //
 
 #include <mcp_can.h>                            // version 24/03/17 from https://github.com/coryjfowler/MCP_CAN_lib

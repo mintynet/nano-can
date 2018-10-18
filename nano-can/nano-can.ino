@@ -1,7 +1,6 @@
 //
-// CAN Receive Message diff
+// Nano CAN sample
 //
-
 #include <mcp_can.h>                            // version 24/03/17 from https://github.com/coryjfowler/MCP_CAN_lib
 #include <SPI.h>                                // version 1.0.0
 
