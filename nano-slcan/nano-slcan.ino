@@ -361,21 +361,19 @@ void send_canmsg(char *buf, boolean rtr, boolean ext) {
     if (rtr) {
       if (ext) {
         sscanf(&buf[1], "%04x%04x", &msg_ide, &msg_id);
-//        tx_frame.FIR.B.RTR = CAN_RTR;
+        msg_ide = msg_ide | 0x4000;
         msgEXT = true;
       } else {
         sscanf(&buf[1], "%03x", &msg_id);
-//        tx_frame.FIR.B.RTR = CAN_RTR;
+        msg_ide = msg_ide | 0x4000;
         msgEXT = false;
       }
     } else {
       if (ext) {
         sscanf(&buf[1], "%04x%04x", &msg_ide, &msg_id);
-//        tx_frame.FIR.B.RTR = CAN_no_RTR;
         msgEXT = true;
       } else {
         sscanf(&buf[1], "%03x", &msg_id);
-//        tx_frame.FIR.B.RTR = CAN_no_RTR;
         msgEXT = false;
       }
     }
@@ -422,7 +420,7 @@ void send_canmsg(char *buf, boolean rtr, boolean ext) {
     if (data[7]<16) Serial.print("0");
     Serial.print(data[7],HEX);
     Serial.println();*/
-    byte sndStat = CAN0.sendMsgBuf(msgID, 0, msgDLC, data);
+    byte sndStat = CAN0.sendMsgBuf(msgID, msgEXT, msgDLC, data);
     if(sndStat == CAN_OK){
       slcan_ack();
     } else {
