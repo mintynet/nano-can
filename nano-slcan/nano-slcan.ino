@@ -437,17 +437,6 @@ void send_canmsg(char *buf, boolean rtr, boolean ext) {
 void setup()
 {
   Serial.begin(ser_speed);
-  Serial.println("MCP2515 Nano slcan...");
-
-  // Initialize MCP2515 running at 8MHz with a baudrate of 500kb/s and the masks and filters disabled.
-//  if(CAN0.begin(MCP_ANY, CAN_500KBPS, MCP_8MHZ) == CAN_OK)
-//    Serial.println("MCP2515 Initialized Successfully!");
-//  else
-//    Serial.println("Error Initializing MCP2515...");
-
-//  CAN0.setMode(MCP_NORMAL);                     // Set operation mode to normal so the MCP2515 sends acks to received data.
-
-//  pinMode(CAN0_INT, INPUT);                            // Configuring pin for /INT input
 } //setup()
 
 //----------------------------------------------------------------
