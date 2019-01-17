@@ -12,6 +12,7 @@ This repository has the arduino code for use with nano can PCB.
 <br><br>u and d will change the CAN ID up or down by 1
 <br>U and D will change the CAN ID up or down by 16
 <br>h shows the above information
+<br><br>The <b>nano-slcan</b> sketch is slcan compatible software but the serial chip on the arduino boards I use will only run at 57600bps
 
 <br><b>Schematic</b>
 ![PCB Schematic](Schematic_nano-can-pcb.png)
