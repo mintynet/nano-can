@@ -194,68 +194,68 @@ void pars_slcancmd(char *buf)
       break;
     case 'h':               // (NOT SPEC) HELP SERIAL
       Serial.println();
-      Serial.println("mintynet.com - slcan nano");
+      Serial.println(F("mintynet.com - slcan nano"));
       Serial.println();
-      Serial.println("O\t=\tStart slcan");
-      Serial.println("C\t=\tStop slcan (reboots device)");
-      Serial.println("t\t=\tSend std frame");
-      Serial.println("r\t=\tSend std rtr frame");
-      Serial.println("T\t=\tSend ext frame");
-      Serial.println("R\t=\tSend ext rtr frame");
-      Serial.println("Z0\t=\tTimestamp Off");
-      Serial.println("Z1\t=\tTimestamp On");
-      Serial.println("snn\t=\tSpeed 0xnnk N/A");
-      Serial.println("S0\t=\tSpeed 10k N/A");
-      Serial.println("S1\t=\tSpeed 20k N/A");
-      Serial.println("S2\t=\tSpeed 50k N/A");
-      Serial.println("S3\t=\tSpeed 100k");
-      Serial.println("S4\t=\tSpeed 125k");
-      Serial.println("S5\t=\tSpeed 250k");
-      Serial.println("S6\t=\tSpeed 500k");
-      Serial.println("S7\t=\tSpeed 800k N/A");
-      Serial.println("S8\t=\tSpeed 1000k");
-      Serial.println("F\t=\tFlags N/A");
-      Serial.println("N\t=\tSerial No");
-      Serial.println("V\t=\tVersion");
-      Serial.println("-----NOT SPEC-----");
-      Serial.println("h\t=\tHelp");
-      Serial.print("l\t=\tToggle CR ");
+      Serial.println(F("O\t=\tStart slcan"));
+      Serial.println(F("C\t=\tStop slcan (reboots device)"));
+      Serial.println(F("t\t=\tSend std frame"));
+      Serial.println(F("r\t=\tSend std rtr frame"));
+      Serial.println(F("T\t=\tSend ext frame"));
+      Serial.println(F("R\t=\tSend ext rtr frame"));
+      Serial.println(F("Z0\t=\tTimestamp Off"));
+      Serial.println(F("Z1\t=\tTimestamp On"));
+      Serial.println(F("snn\t=\tSpeed 0xnnk N/A"));
+      Serial.println(F("S0\t=\tSpeed 10k N/A"));
+      Serial.println(F("S1\t=\tSpeed 20k N/A"));
+      Serial.println(F("S2\t=\tSpeed 50k N/A"));
+      Serial.println(F("S3\t=\tSpeed 100k"));
+      Serial.println(F("S4\t=\tSpeed 125k"));
+      Serial.println(F("S5\t=\tSpeed 250k"));
+      Serial.println(F("S6\t=\tSpeed 500k"));
+      Serial.println(F("S7\t=\tSpeed 800k N/A"));
+      Serial.println(F("S8\t=\tSpeed 1000k"));
+      Serial.println(F("F\t=\tFlags N/A"));
+      Serial.println(F("N\t=\tSerial No"));
+      Serial.println(F("V\t=\tVersion"));
+      Serial.println(F("-----NOT SPEC-----"));
+      Serial.println(F("h\t=\tHelp"));
+      Serial.print(F("l\t=\tToggle CR "));
       if (cr) {
-        Serial.println("ON");
+        Serial.println(F("ON"));
       } else {
-        Serial.println("OFF");
+        Serial.println(F("OFF"));
       }
-      Serial.print("CAN_SPEED:\t");
+      Serial.print(F("CAN_SPEED:\t"));
       switch(can_speed) {
         case 100:
-          Serial.print("100");
+          Serial.print(F("100"));
           break;
         case 125:
-          Serial.print("125");
+          Serial.print(F("125"));
           break;
         case 250:
-          Serial.print("250");
+          Serial.print(F("250"));
           break;
         case 500:
-          Serial.print("500");
+          Serial.print(F("500"));
           break;
         case 800:
-          Serial.print("800");
+          Serial.print(F("800"));
           break;
         case 1000:
-          Serial.print("1000");
+          Serial.print(F("1000"));
           break;
         default:
           break;
       }
-      Serial.print("kbps");
+      Serial.print(F("kbps"));
       if (timestamp) {
-        Serial.print("\tT");
+        Serial.print(F("\tT"));
       }
       if (working) {
-        Serial.print("\tON");
+        Serial.print(F("\tON"));
       } else {
-        Serial.print("\tOFF");
+        Serial.print(F("\tOFF"));
       }
       Serial.println();
       slcan_nack();
