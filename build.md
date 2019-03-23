@@ -45,8 +45,8 @@
 <br>![MCP2515 module top soldered](build/build14.jpg)
 <br>MCP2515 module without pin header plastic
 <br>![MCP2515 module without pin header plastic](build/build15.jpg)
-<br>MCP2515 module rear soldered
-<br>![MCP2515 module rear soldered](build/build16.jpg)
+<br>MCP2515 module rear soldered and terminator jumper
+<br>![MCP2515 module rear soldered and terminator jumper](build/build16.jpg)
 <br>ICSP header without plastic
 <br>![ICSP header without plastic](build/build17.jpg)
 <br>ICSP header removed
