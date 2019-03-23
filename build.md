@@ -10,7 +10,7 @@
 <br>Requires the use of the following Arduino library
 <br><br>https://github.com/coryjfowler/MCP_CAN_lib
 <br>If you have the ability to, burn the new Arduino nano bootloader to the board.
-<br>Then program with can-receive-all sketch
+<br><br>Then program with can-receive-all sketch
 
 ## Instructions
 <br>Parts plus 2 core wire is required
