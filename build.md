@@ -30,7 +30,7 @@
 <br>Rear of board with Arduino nano re soldered
 <br>![Rear of board with Arduino nano re soldered](build/build08.jpg)
 <br>Made board without pushing pins through
-<br>![Made board without pushing pins through](board/build08a.jpg)
+<br>![Made board without pushing pins through](build/build08a.jpg)
 <br>MCP2515 Module rear
 <br>![MCP2515 Module rear](build/build09.jpg)
 <br>MCP2515 some pins pushed through
