@@ -33,8 +33,8 @@
 <br>![Made board without pushing pins through](board/build08a.jpg)
 <br>MCP2515 Module rear
 <br>![MCP2515 Module rear](build/build09.jpg)
-<br>![MCP2515 some pins pushed through
-<br>MCP2515 some pins pushed through](build/build10.jpg)
+<br>MCP2515 some pins pushed through
+<br>![MCP2515 some pins pushed through](build/build10.jpg)
 <br>MCP2515 all pins pushed through
 <br>![MCP2515 all pins pushed through](build/build11.jpg)
 <br>MCP2515 module in place
