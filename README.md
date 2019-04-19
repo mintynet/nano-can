@@ -1,5 +1,10 @@
 # nano-can
-This repository has the arduino code for use with nano can PCB.
+If you are looking for the BSides Scotland 2019 Badge please click the following link
+<br>https://github.com/mintynet/BSidesScotland2019
+<br>
+<br>The sketches below will work but the specific build instructions are in the other repository
+<br>
+<br>This repository has the arduino code for use with nano can PCB.
 <br>These were created as a cheap device for people to get into car hacking.
 <br><br><b>I take no responsibility for any issues caused if using either the hardware or the code</b>
 <br><br>Requires the use of the following Arduino library
