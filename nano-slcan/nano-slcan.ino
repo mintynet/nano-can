@@ -435,6 +435,7 @@ void send_canmsg(char *buf, boolean rtr, boolean ext) {
 void setup()
 {
   Serial.begin(ser_speed);
+  pinMode(CAN0_INT, INPUT);                            // Configuring pin for /INT input
 } //setup()
 
 //----------------------------------------------------------------
