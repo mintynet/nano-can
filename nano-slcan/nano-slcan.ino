@@ -10,7 +10,7 @@ boolean       timestamp = false;
 boolean       cr        = false;
 
 int           can_speed = 500;
-unsigned int  ser_speed = 57600;         
+long          ser_speed = 500000;         
 
 long unsigned int   rxId;
 unsigned char       len = 0;
