@@ -19,7 +19,7 @@ MCP_CAN CAN0(10);                               // Set CS to pin 10
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(500000);
   
   // Initialize MCP2515 running at 8MHz with a baudrate of 500kb/s and the masks and filters disabled.
   // 500kb/s is default OBD2 port speed other bus speeds are possible, take care NOT to connect wrong speed
