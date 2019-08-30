@@ -3,6 +3,10 @@
 //
 
 #include <mcp_can.h>                            // version 24/03/17 from https://github.com/coryjfowler/MCP_CAN_lib
+// You need to modify mcp_can_dfs.h to change 
+//#define DEBUG_MODE 1
+//to 
+//#define DEBUG_MODE 0
 #include <SPI.h>                                // version 1.0.0
 
 boolean       working   = false;
