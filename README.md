@@ -17,7 +17,10 @@ If you are looking for the BSides Scotland 2019 Badge please click the following
 <br><br>u and d will change the CAN ID up or down by 1
 <br>U and D will change the CAN ID up or down by 16
 <br>h shows the above information
-<br><br>The <b>nano-slcan</b> sketch is slcan compatible software but the serial chip on the arduino boards I use will only run at 57600bps
+<br><br>The <b>nano-slcan</b> sketch is slcan compatible software but the serial chip on the arduino boards I use will only run at 500000bps
+
+<br><b>EASY EDA PCB Design files</b>
+https://easyeda.com/minty2017/nano-can-2019
 
 <br><b>Schematic</b>
 ![PCB Schematic](Schematic_nano-can-pcb.png)
