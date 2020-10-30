@@ -43,4 +43,3 @@ Note:
 ![PCB TOP](top-gerber.JPG)
 <br><b>PCB Bottom</b><br>
 ![PCB BOTTOM](bottom-gerber.JPG)
-!
