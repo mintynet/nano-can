@@ -221,7 +221,7 @@ void loop()
           }
           Serial.print(prevrxBuf[i],BIN);
         }
-        Serial.println(" Previous");
+       Serial.println(" Previous");
         Serial.print("              ");
         for(byte i = 0; i<len; i++){
           Serial.print(" ");
@@ -242,6 +242,10 @@ void loop()
           }
           Serial.print(rxBuf[i],BIN);
           change[i]=prevrxBuf[i] ^ rxBuf[i];
+        }
+         // added to make non used bytes to 0
+        for(byte i = len; i<8; i++){
+          rxBuf[i] = 0;
         }
         Serial.print(" Current - count:");
         Serial.println(counter);
@@ -270,6 +274,9 @@ void loop()
       }
       for(byte i = 0; i<len; i++){
         prevrxBuf[i]=rxBuf[i];
+      }
+      for(byte i = len; i<8; i++){
+        prevrxBuf[i]=0;
       }
     }
   }
