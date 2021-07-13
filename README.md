@@ -1,4 +1,5 @@
 # nano-can
+## If you would like a nano-can PCB feel free to contact me on Twitter @mintynet, I will send if you cover the cost of postage.
 If you are looking for the BSides Scotland 2019 Badge please click the following link
 <br>https://github.com/mintynet/BSidesScotland2019
 <br>
@@ -33,15 +34,15 @@ Note:
 ![MCP2515](mcp2515.JPG)
 <br>L goes to OBD2 pin 14
 <br>H goes to OBD2 pin 6
+#### The PCB may look slightly different to the ones shown in this file, white square indicates the USB end of Nano.
 <br><b>Completed Top</b><br>
-<br>The PCB may look slightly different to the ones shown in this file.
 ![Completed TOP](top-complete.jpg)
 <br><b>Completed Bottom</b><br>
 ![Completed BOTTOM](bottom-complete.jpg)
 <br><b>OBD2 connector</b><br>
 ![OBD2 connector](obd2-connector.jpg)
+#### The PCB may look slightly different to the ones shown in this file, white square indicates the USB end of Nano.
 <br><b>PCB Top</b><br>
-<br>The PCB may look slightly different to the ones shown in this file, white square indicates the USB end of Nano.
 ![PCB TOP](top-gerber.JPG)
 <br><b>PCB Bottom</b><br>
 ![PCB BOTTOM](bottom-gerber.JPG)
