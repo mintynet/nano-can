@@ -2,7 +2,7 @@
 // Nano slcan
 //
 
-#include <mcp_can.h>                            // version 24/03/17 from https://github.com/coryjfowler/MCP_CAN_lib
+#include <mcp_can.h>                            // version 25/09/17 from https://github.com/coryjfowler/MCP_CAN_lib
 // You need to modify mcp_can_dfs.h to change 
 //#define DEBUG_MODE 1
 //to 
@@ -13,7 +13,8 @@ boolean       working   = false;
 boolean       timestamp = false;
 boolean       cr        = false;
 
-int           can_speed = 500;
+int           can_speed = 500
+;
 long          ser_speed = 500000;         
 
 long unsigned int   rxId;
@@ -185,7 +186,7 @@ void pars_slcancmd(char *buf)
       slcan_ack();
       break;
     case 'V':               // VERSION NUMBER
-      Serial.print("V1234");
+      Serial.print("V-082021");
       slcan_ack();
       break;
     case 'N':               // SERIAL NUMBER
@@ -198,7 +199,7 @@ void pars_slcancmd(char *buf)
       break;
     case 'h':               // (NOT SPEC) HELP SERIAL
       Serial.println();
-      Serial.println(F("mintynet.com - slcan nano"));
+      Serial.println(F("mintynet.com - nano-slcan"));
       Serial.println();
       Serial.println(F("O\t=\tStart slcan"));
       Serial.println(F("C\t=\tStop slcan (reboots device)"));
@@ -299,7 +300,6 @@ void transfer_tty2can()
 
 void transfer_can2tty()
 {
-  String command = "";
   long time_now = 0;
   //receive next CAN frame from queue
   if(!digitalRead(CAN0_INT)) {
@@ -308,44 +308,45 @@ void transfer_can2tty()
       CAN0.readMsgBuf(&rxId, &len, rxBuf);
       if((rxId & 0x80000000) == 0x80000000) {
         if ((rxId & 0x40000000) == 0x40000000) {
-          command = command + "R";
+          Serial.print("R");
+          //command = command + "R";
         } else {
-          command = command + "T";
+          Serial.print("T");
+          //command = command + "T";
         }
-        command = command + char(hexval[ (rxId>>28)&15]);
-        command = command + char(hexval[ (rxId>>24)&15]);
-        command = command + char(hexval[ (rxId>>20)&15]);
-        command = command + char(hexval[ (rxId>>16)&15]);
-        command = command + char(hexval[ (rxId>>12)&15]);
-        command = command + char(hexval[ (rxId>>8)&15]);
-        command = command + char(hexval[ (rxId>>4)&15]);
-        command = command + char(hexval[ rxId&15]);
-        command = command + char(hexval[ len ]);
+        Serial.print(char(hexval[ (rxId>>28)&15]));
+        Serial.print(char(hexval[ (rxId>>24)&15]));
+        Serial.print(char(hexval[ (rxId>>20)&15]));
+        Serial.print(char(hexval[ (rxId>>16)&15]));
+        Serial.print(char(hexval[ (rxId>>12)&15]));
+        Serial.print(char(hexval[ (rxId>>8)&15]));
+        Serial.print(char(hexval[ (rxId>>4)&15]));
+        Serial.print(char(hexval[ rxId&15]));
+        Serial.print(char(hexval[ len ]));
       } else {
         if ((rxId & 0x40000000) == 0x40000000) {
-          command = command + "r";
+          Serial.print("r");
         } else {
-          command = command + "t";
+          Serial.print("t");
         }
-        command = command + char(hexval[ (rxId>>8)&15]);
-        command = command + char(hexval[ (rxId>>4)&15]);
-        command = command + char(hexval[ rxId&15]);
-        command = command + char(hexval[ len ]);
+        Serial.print(char(hexval[ (rxId>>8)&15]));
+        Serial.print(char(hexval[ (rxId>>4)&15]));
+        Serial.print(char(hexval[ rxId&15]));
+        Serial.print(char(hexval[ len ]));
       }
       for(int i = 0; i < len; i++){
-        command = command + char(hexval[ rxBuf[i]>>4 ]);
-        command = command + char(hexval[ rxBuf[i]&15 ]);
+        Serial.print(char(hexval[ rxBuf[i]>>4 ]));
+        Serial.print(char(hexval[ rxBuf[i]&15 ]));
         //printf("%c\t", (char)rx_frame.data.u8[i]);
       }
     if (timestamp) {
       time_now = millis() % 60000;
-      command = command + char(hexval[ (time_now>>12)&15 ]);
-      command = command + char(hexval[ (time_now>>8)&15 ]);
-      command = command + char(hexval[ (time_now>>4)&15 ]);
-      command = command + char(hexval[ time_now&15 ]);
+      Serial.print(char(hexval[ (time_now>>12)&15 ]));
+      Serial.print(char(hexval[ (time_now>>8)&15 ]));
+      Serial.print(char(hexval[ (time_now>>4)&15 ]));
+      Serial.print(char(hexval[ time_now&15 ]));
     }
-    command = command + '\r';
-    Serial.print(command);
+    Serial.print('\r');
     if (cr) Serial.println("");
     }
   }
@@ -430,7 +431,6 @@ void send_canmsg(char *buf, boolean rtr, boolean ext) {
     } else {
       slcan_nack();
     }
-    //ESP32Can.CANWriteFrame(&tx_frame);
   }
 } // send_canmsg()
 
