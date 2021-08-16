@@ -1,3 +1,6 @@
+#
+# This file is used to test Peugeot 208 cluster using the nano-slcan sketch
+#
 import serial
 import time
 ser = serial.Serial('/dev/ttyUSB0', 500000, timeout=0)
