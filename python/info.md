@@ -10,6 +10,7 @@ Download and install Thonny IDE
 <br>You may need to change the COM speed from 500000 to ?
 
 ##########################################################################################
+
 Program to list serial ports on PC
 <br>Paste the following into the IDE and it should list the current COM ports
 
