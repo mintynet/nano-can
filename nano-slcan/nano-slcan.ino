@@ -309,10 +309,8 @@ void transfer_can2tty()
       if((rxId & 0x80000000) == 0x80000000) {
         if ((rxId & 0x40000000) == 0x40000000) {
           Serial.print("R");
-          //command = command + "R";
         } else {
           Serial.print("T");
-          //command = command + "T";
         }
         Serial.print(char(hexval[ (rxId>>28)&15]));
         Serial.print(char(hexval[ (rxId>>24)&15]));
