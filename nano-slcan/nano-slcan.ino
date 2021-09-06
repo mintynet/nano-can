@@ -312,7 +312,7 @@ void transfer_can2tty()
         } else {
           Serial.print("T");
         }
-        Serial.print(char(hexval[ (rxId>>28)&15]));
+        Serial.print(char(hexval[ (rxId>>28)&1]));
         Serial.print(char(hexval[ (rxId>>24)&15]));
         Serial.print(char(hexval[ (rxId>>20)&15]));
         Serial.print(char(hexval[ (rxId>>16)&15]));
