@@ -1,5 +1,7 @@
-#### gauge-sweep.py is for python3
-#### gauge-sweep2.py is for python2
+#### cangen.py is a Python3 version of the linux cangen program, which includes ability to fuzz/bitwalk the can data. If you get no output try changing the drv option.
+
+#### gauge-sweep.py is for Python3
+#### gauge-sweep2.py is for Python2
 
 ### Instructions
 Download and install Thonny IDE
