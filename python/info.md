@@ -1,5 +1,8 @@
 #### cangen.py is a Python3 version of the linux cangen program, which includes ability to fuzz/bitwalk the can data. If you get no output try changing the drv option.
 
+Example
+python3 cangen.py -D bw -I 0b6 -n 256 -vv -g 100 -L 8 -drv ch -slow 0
+
 ##########################################################################################
 
 #### gauge-sweep.py is for Python3
