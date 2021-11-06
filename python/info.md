@@ -1,5 +1,7 @@
 #### cangen.py is a Python3 version of the linux cangen program, which includes ability to fuzz/bitwalk the can data. If you get no output try changing the drv option.
 
+##########################################################################################
+
 #### gauge-sweep.py is for Python3
 #### gauge-sweep2.py is for Python2
 
@@ -24,8 +26,11 @@ for port, desc, hwid in sorted(ports):
         print("{}: {} [{}]".format(port, desc, hwid))
 ```
 ##########################################################################################
+##########################################################################################
 
 Slcan for linux also works use nano-slcan sketch
+
+##########################################################################################
 
 ```bash
 #can viewer -c port@speed -b CAN baud rate -i interface type
