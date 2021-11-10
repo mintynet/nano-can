@@ -8,7 +8,7 @@ my_parser=argparse.ArgumentParser()
 my_parser.version = '1.0'
 #my_parser.add_argument('-bus',action='store',type=str,help='canbus',default='can0')
 my_parser.add_argument('-comm',action='store',type=str,help='TTY port',default='/dev/ttyUSB0')
-my_parser.add_argument('-commbaud',action='store',type=int,help='Comm Baudrate',default=500000)
+my_parser.add_argument('-commbaud',action='store',type=int,help='Comm Baudrate',default=57600)
 my_parser.add_argument('-canbaud',action='store',type=int,help='CAN baud rate kbps',default=125)
 my_parser.add_argument('-I',action='store',type=str,help='CAN ID i=inc,r=rnd,fz=fuzz',default='i')
 my_parser.add_argument('-L',action='store',type=int,help='CAN length 0 to 8',choices=range(0,9),default=0)
