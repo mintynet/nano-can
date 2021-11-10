@@ -3,7 +3,7 @@
 #
 import serial
 import time
-ser = serial.Serial('/dev/ttyUSB0', 500000, timeout=0)
+ser = serial.Serial('/dev/ttyUSB0', 57600, timeout=0)
 out = ser.read(100)
 print (out)
 var = input("Enter O to start: ")
