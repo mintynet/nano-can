@@ -3,10 +3,20 @@
 #
 import serial
 import time
+import sys
 ser = serial.Serial('/dev/ttyUSB0', 57600, timeout=0)
 out = ser.read(100)
 print (out)
-var = input("Enter O to start: ")
+
+var = ""
+while "O" not in var:
+    var = input("Enter [letter] O to start or Q to quit: ")
+
+    if 'Q' in var:
+        print("Exiting")
+        ser.close()
+        sys.exit(0)
+
 ser.write('S4'.encode())
 ser.write('\r'.encode())
 time.sleep(0.1)
