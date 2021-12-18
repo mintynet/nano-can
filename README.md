@@ -18,13 +18,16 @@ If you are looking for the BSides Scotland 2019 Badge please click the following
 <br><br>u and d will change the CAN ID up or down by 1
 <br>U and D will change the CAN ID up or down by 16
 <br>h shows the above information
-<br><br>The <b>nano-slcan</b> sketch is slcan compatible software but the serial chip on the arduino boards I use will only run at 500000bps
+<br><br>The <b>nano-slcan</b> sketch is slcan compatible software but the serial chip on the arduino boards I use will only run at max 500000bps, 57600bps may be more reliable
 
 <br><b>EASY EDA PCB Design files</b>
 https://easyeda.com/minty2017/nano-can-2019
 
 <br><b>Schematic</b>
 ![PCB Schematic](Schematic_nano-can-pcb.png)
+
+There is [build.md](./build.md) with more detail.
+
 Note:
 <br><b>Arduino Nano</b> goes on the top with the URL on, <b>the square at one end denote the position of the USB connector</b>.
 ![Arduino Nano](arduino-nano.jpg)
