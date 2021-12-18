@@ -35,9 +35,9 @@ Note:
 <br>L goes to OBD2 pin 14
 <br>H goes to OBD2 pin 6
 #### The PCB may look slightly different to the ones shown in this file, white square indicates the USB end of Nano.
-<br><b>Completed Top</b><br>
+<br><b>Completed v1.0 Top</b><br>
 ![Completed TOP](top-complete.jpg)
-<br><b>Completed Bottom</b><br>
+<br><b>Completed v1.0 Bottom</b><br>
 ![Completed BOTTOM](bottom-complete.jpg)
 <br><b>OBD2 connector</b><br>
 ![OBD2 connector](obd2-connector.jpg)
