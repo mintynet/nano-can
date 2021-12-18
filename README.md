@@ -1,5 +1,5 @@
 # nano-can
-## If you would like a nano-can PCB feel free to contact me on Twitter @mintynet, I will send if you cover the cost of postage.
+## If you would like a nano-can PCB feel free to contact me on Twitter @mintynet, I don't allow msgs if I do not follow you so just tweet asking me to follow back, I will send if you cover the cost of postage.
 If you are looking for the BSides Scotland 2019 Badge please click the following link
 <br>https://github.com/mintynet/BSidesScotland2019
 <br>
