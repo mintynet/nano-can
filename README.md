@@ -42,7 +42,7 @@ Note:
 <br><b>OBD2 connector</b><br>
 ![OBD2 connector](obd2-connector.jpg)
 #### The PCB may look slightly different to the ones shown in this file, white square indicates the USB end of Nano.
-<br><b>PCB Top</b><br>
+<br><b>v1.0 PCB Top</b><br>
 ![PCB TOP](top-gerber.JPG)
-<br><b>PCB Bottom</b><br>
+<br><b>v1.0 PCB Bottom</b><br>
 ![PCB BOTTOM](bottom-gerber.JPG)
