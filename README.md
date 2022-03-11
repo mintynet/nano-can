@@ -30,22 +30,31 @@ There is [build.md](./build.md) with more detail.
 
 Note:
 <br><b>Arduino Nano</b> goes on the top with the URL on, <b>the square at one end denote the position of the USB connector</b>.
-![Arduino Nano](arduino-nano.jpg)
+![Arduino Nano](readme.img/arduino-nano.jpg)
 <br><b>MCP2515 Module</b> goes on the bottom but <b>DO NOT</b> solder the Terminator Jumper or CAN pin headers to the PCB
 <br>You may require a jumper on the Terminator resistor
 <br>To solder the CAN module to the board, add extra solder to the back of the pins, then heat the pins and push through so that the pins are on the rear, then remove the plastic pin spacer left on the top and add extra solder to the pins. 
-![MCP2515](mcp2515.JPG)
+![MCP2515](readme.img/mcp2515.JPG)
 <br>L goes to OBD2 pin 14
 <br>H goes to OBD2 pin 6
 #### The PCB may look slightly different to the ones shown in this file, white square indicates the USB end of Nano.
 <br><b>Completed v1.0 Top</b><br>
-![Completed TOP](top-complete.jpg)
+![Completed TOP](readme.img/top-complete.jpg)
 <br><b>Completed v1.0 Bottom</b><br>
-![Completed BOTTOM](bottom-complete.jpg)
+![Completed BOTTOM](readme.img/bottom-complete.jpg)
 <br><b>OBD2 connector</b><br>
-![OBD2 connector](obd2-connector.jpg)
+![OBD2 connector](readme.img/obd2-connector.jpg)
 #### The PCB may look slightly different to the ones shown in this file, white square indicates the USB end of Nano.
 <br><b>v1.0 PCB Top</b><br>
-![PCB TOP](top-gerber.JPG)
+![PCB TOP](readme.img/top-gerber-v1.0.jpg)
 <br><b>v1.0 PCB Bottom</b><br>
-![PCB BOTTOM](bottom-gerber.JPG)
+![PCB BOTTOM](readme.img/bottom-gerber-v1.0.jpg)
+<br><b>v1.2 PCB Top</b><br>
+![PCB TOP](readme.img/top-gerber-v1.2.png)
+<br><b>v1.2 PCB Bottom</b><br>
+![PCB BOTTOM](readme.img/bottom-gerber-v1.2.png)
+<br>NOTE v1.3 has voltage selector solder pads to select between 3.3v and 5v based Arduino Nano's
+<br><b>v1.3 PCB Top</b><br>
+![PCB TOP](readme.img/top-gerber-v1.3.png)
+<br><b>v1.3 PCB Bottom</b><br>
+![PCB BOTTOM](readme.img/bottom-gerber-v1.3.png)
