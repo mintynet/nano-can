@@ -6,8 +6,8 @@
 <br>Wire strippers
 <br>Small screw driver
 ## Software requirements.
-<br>Arduino IDE
-<br>Requires the use of the following Arduino library
+### Arduino IDE
+Requires the use of the following Arduino library
 <br><br>https://github.com/coryjfowler/MCP_CAN_lib
 <br>If you have the ability to, burn the new Arduino nano bootloader to the board.
 <br><br>Then program with can-receive-all sketch
@@ -16,7 +16,8 @@
 ## Instructions
 <br>Parts plus 2 core wire is required
 <br>![Parts plus 2 core wire is required](build/build01.jpg)
-<br>PCB in holder
+<br> <br>If you have a 2022 v1.3 board please solder a bridge between the middle and the voltage of the Nano board you are using, orignal 328p boards use 5v the newer nano-every etc use 3.3v for the processor. THIS IS NOT SHOWN ON THE PICTURES BELOW.
+<br><br>PCB in holder
 <br>![PCB in holder](build/build02.jpg)
 <br>Board with Arduino nano
 <br>![Board with Arduino nano](build/build03.jpg)
