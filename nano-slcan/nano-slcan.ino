@@ -48,6 +48,15 @@ void pars_slcancmd(char *buf)
     case 'O':               // OPEN CAN
       working=true;
       switch (can_speed) {
+        case 50:
+          if(CAN0.begin(MCP_ANY, CAN_50KBPS, MCP_8MHZ) == CAN_OK)
+          {
+            CAN0.setMode(MCP_NORMAL);                     // Set operation mode to normal so the MCP2515 sends acks to received data.
+            slcan_ack();
+          } else {
+            slcan_nack();
+          }
+          break;
         case 100:
           if(CAN0.begin(MCP_ANY, CAN_100KBPS, MCP_8MHZ) == CAN_OK)
           {
@@ -151,7 +160,8 @@ void pars_slcancmd(char *buf)
           slcan_nack();
           break;
         case '2':           // 50k
-          slcan_nack();
+          can_speed = 50;
+          slcan_ack();
           break;
         case '3':           // 100k
           can_speed = 100;
@@ -212,7 +222,7 @@ void pars_slcancmd(char *buf)
       Serial.println(F("snn\t=\tSpeed 0xnnk N/A"));
       Serial.println(F("S0\t=\tSpeed 10k N/A"));
       Serial.println(F("S1\t=\tSpeed 20k N/A"));
-      Serial.println(F("S2\t=\tSpeed 50k N/A"));
+      Serial.println(F("S2\t=\tSpeed 50k"));
       Serial.println(F("S3\t=\tSpeed 100k"));
       Serial.println(F("S4\t=\tSpeed 125k"));
       Serial.println(F("S5\t=\tSpeed 250k"));
