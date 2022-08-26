@@ -24,7 +24,7 @@ If you are looking for the BSides Scotland 2019 Badge please click the following
 https://easyeda.com/minty2017/nano-can-2019
 
 <br><b>Schematic</b>
-![PCB Schematic](Schematic_nano-can-pcb.png)
+![PCB Schematic](readme.img/schematic_nano-can-pcb.png)
 
 There is [build.md](./build.md) with more detail.
 
