@@ -4,8 +4,8 @@
 #include <mcp_can.h>                            // version 24/03/17 from https://github.com/coryjfowler/MCP_CAN_lib
 #include <SPI.h>                                // version 1.0.0
 
-long unsigned int rxId;
-long unsigned int reqRxId;
+long unsigned rxId;
+long unsigned reqRxId;
 unsigned char len = 0;
 unsigned char rxBuf[8];
 unsigned char prevrxBuf[8];
@@ -47,7 +47,7 @@ void setup()
 
 void pars_CANID(char *buf) 
 {
-  long unsigned int calcRxId = 0;
+  long unsigned calcRxId = 0;
   switch (buf[0])
   {
     case 'u':     // increase CANID by 1
@@ -188,96 +188,202 @@ void loop()
   if(!digitalRead(CAN0_INT))                        // If CAN0_INT pin is low, read receive buffer
   {
     CAN0.readMsgBuf(&rxId, &len, rxBuf);            // Read data: len = data length, buf = data byte(s)
-
-    if(rxId == reqRxId){
-      counter++;
-      if ((rxBuf[0]!=prevrxBuf[0]) | (rxBuf[1]!=prevrxBuf[1]) | (rxBuf[2]!=prevrxBuf[2]) | (rxBuf[3]!=prevrxBuf[3]) | (rxBuf[4]!=prevrxBuf[4]) | (rxBuf[5]!=prevrxBuf[5]) | (rxBuf[6]!=prevrxBuf[6]) | (rxBuf[7]!=prevrxBuf[7])) {
-        Serial.print("ID 0x");
-        if (rxId<16) {
-          Serial.print("00");
-        } else if (rxId<256) {
-          Serial.print("0");
+    if ((rxId & 0x80000000) == 0x80000000) {        // Extended / RTR frame
+    rxId = rxId & 0x3FFFFFFF;
+      if ((rxId & 0x40000000) == 0x40000000) {
+      } else {
+        if(rxId == reqRxId){
+          counter++;
+          if ((rxBuf[0]!=prevrxBuf[0]) | (rxBuf[1]!=prevrxBuf[1]) | (rxBuf[2]!=prevrxBuf[2]) | (rxBuf[3]!=prevrxBuf[3]) | (rxBuf[4]!=prevrxBuf[4]) | (rxBuf[5]!=prevrxBuf[5]) | (rxBuf[6]!=prevrxBuf[6]) | (rxBuf[7]!=prevrxBuf[7])) {
+            Serial.print("ID 0x");
+            if (rxId<16) {
+              Serial.print("0000000");
+            } else if (rxId<256) {
+              Serial.print("000000");
+            } else if (rxId<4096) {
+              Serial.print("00000");
+            } else if (rxId<65536) {
+              Serial.print("0000");
+            } else if (rxId<1048576) {
+              Serial.print("000");
+            } else if (rxId<16777216) {
+              Serial.print("00");
+            } else if (rxId<268435456) {
+              Serial.print("0");
+            }
+            Serial.print(rxId,HEX);
+            Serial.print(" Len:");
+            Serial.println(len);
+            Serial.print("              ");
+            for(byte i = 0; i<len; i++){
+              Serial.print(" ");
+              if (prevrxBuf[i]<2) {
+                Serial.print("0000000");
+              } else if (prevrxBuf[i]<4) {
+                Serial.print("000000");
+              } else if (prevrxBuf[i]<8) {
+                Serial.print("00000");
+              } else if (prevrxBuf[i]<16) {
+                Serial.print("0000");
+              } else if (prevrxBuf[i]<32) {
+                Serial.print("000");
+              } else if (prevrxBuf[i]<64) {
+                Serial.print("00");
+              } else if (prevrxBuf[i]<128) {
+                Serial.print("0");
+              }
+              Serial.print(prevrxBuf[i],BIN);
+            }
+          Serial.println(" Previous");
+            Serial.print("              ");
+            for(byte i = 0; i<len; i++){
+              Serial.print(" ");
+              if (rxBuf[i]<2) {
+                Serial.print("0000000");
+              } else if (rxBuf[i]<4) {
+                Serial.print("000000");
+              } else if (rxBuf[i]<8) {
+                Serial.print("00000");
+              } else if (rxBuf[i]<16) {
+                Serial.print("0000");
+              } else if (rxBuf[i]<32) {
+                Serial.print("000");
+              } else if (rxBuf[i]<64) {
+                Serial.print("00");
+              } else if (rxBuf[i]<128) {
+                Serial.print("0");
+              }
+              Serial.print(rxBuf[i],BIN);
+              change[i]=prevrxBuf[i] ^ rxBuf[i];
+            }
+            // added to make non used bytes to 0
+            for(byte i = len; i<8; i++){
+              rxBuf[i] = 0;
+            }
+            Serial.print(" Current - count:");
+            Serial.println(counter);
+            counter=0;
+            Serial.print("              ");
+            for(byte i = 0; i<len; i++){
+              Serial.print(" ");
+              if (change[i]<2) {
+                Serial.print("0000000");
+              } else if (change[i]<4) {
+                Serial.print("000000");
+              } else if (change[i]<8) {
+                Serial.print("00000");
+              } else if (change[i]<16) {
+                Serial.print("0000");
+              } else if (change[i]<32) {
+                Serial.print("000");
+              } else if (change[i]<64) {
+                Serial.print("00");
+              } else if (change[i]<128) {
+                Serial.print("0");
+              }
+              Serial.print(change[i],BIN);
+            }
+            Serial.println(" Difference");
+          }
+          for(byte i = 0; i<len; i++){
+            prevrxBuf[i]=rxBuf[i];
+          }
+          for(byte i = len; i<8; i++){
+            prevrxBuf[i]=0;
+          }
         }
-        Serial.print(rxId,HEX);
-        Serial.print(" Len:");
-        Serial.println(len);
-        Serial.print("              ");
-        for(byte i = 0; i<len; i++){
-          Serial.print(" ");
-          if (prevrxBuf[i]<2) {
-            Serial.print("0000000");
-          } else if (prevrxBuf[i]<4) {
-            Serial.print("000000");
-          } else if (prevrxBuf[i]<8) {
-            Serial.print("00000");
-          } else if (prevrxBuf[i]<16) {
-            Serial.print("0000");
-          } else if (prevrxBuf[i]<32) {
-            Serial.print("000");
-          } else if (prevrxBuf[i]<64) {
+      }
+    }  else {
+      if(rxId == reqRxId){
+        counter++;
+        if ((rxBuf[0]!=prevrxBuf[0]) | (rxBuf[1]!=prevrxBuf[1]) | (rxBuf[2]!=prevrxBuf[2]) | (rxBuf[3]!=prevrxBuf[3]) | (rxBuf[4]!=prevrxBuf[4]) | (rxBuf[5]!=prevrxBuf[5]) | (rxBuf[6]!=prevrxBuf[6]) | (rxBuf[7]!=prevrxBuf[7])) {
+          Serial.print("ID 0x");
+          if (rxId<16) {
             Serial.print("00");
-          } else if (prevrxBuf[i]<128) {
+          } else if (rxId<256) {
             Serial.print("0");
           }
-          Serial.print(prevrxBuf[i],BIN);
-        }
-       Serial.println(" Previous");
-        Serial.print("              ");
-        for(byte i = 0; i<len; i++){
-          Serial.print(" ");
-          if (rxBuf[i]<2) {
-            Serial.print("0000000");
-          } else if (rxBuf[i]<4) {
-            Serial.print("000000");
-          } else if (rxBuf[i]<8) {
-            Serial.print("00000");
-          } else if (rxBuf[i]<16) {
-            Serial.print("0000");
-          } else if (rxBuf[i]<32) {
-            Serial.print("000");
-          } else if (rxBuf[i]<64) {
-            Serial.print("00");
-          } else if (rxBuf[i]<128) {
-            Serial.print("0");
+          Serial.print(rxId,HEX);
+          Serial.print(" Len:");
+          Serial.println(len);
+          Serial.print("              ");
+          for(byte i = 0; i<len; i++){
+            Serial.print(" ");
+            if (prevrxBuf[i]<2) {
+              Serial.print("0000000");
+            } else if (prevrxBuf[i]<4) {
+              Serial.print("000000");
+            } else if (prevrxBuf[i]<8) {
+              Serial.print("00000");
+            } else if (prevrxBuf[i]<16) {
+              Serial.print("0000");
+            } else if (prevrxBuf[i]<32) {
+              Serial.print("000");
+            } else if (prevrxBuf[i]<64) {
+              Serial.print("00");
+            } else if (prevrxBuf[i]<128) {
+              Serial.print("0");
+            }
+            Serial.print(prevrxBuf[i],BIN);
           }
-          Serial.print(rxBuf[i],BIN);
-          change[i]=prevrxBuf[i] ^ rxBuf[i];
+        Serial.println(" Previous");
+          Serial.print("              ");
+          for(byte i = 0; i<len; i++){
+            Serial.print(" ");
+            if (rxBuf[i]<2) {
+              Serial.print("0000000");
+            } else if (rxBuf[i]<4) {
+              Serial.print("000000");
+            } else if (rxBuf[i]<8) {
+              Serial.print("00000");
+            } else if (rxBuf[i]<16) {
+              Serial.print("0000");
+            } else if (rxBuf[i]<32) {
+              Serial.print("000");
+            } else if (rxBuf[i]<64) {
+              Serial.print("00");
+            } else if (rxBuf[i]<128) {
+              Serial.print("0");
+            }
+            Serial.print(rxBuf[i],BIN);
+            change[i]=prevrxBuf[i] ^ rxBuf[i];
+          }
+          // added to make non used bytes to 0
+          for(byte i = len; i<8; i++){
+            rxBuf[i] = 0;
+          }
+          Serial.print(" Current - count:");
+          Serial.println(counter);
+          counter=0;
+          Serial.print("              ");
+          for(byte i = 0; i<len; i++){
+            Serial.print(" ");
+            if (change[i]<2) {
+              Serial.print("0000000");
+            } else if (change[i]<4) {
+              Serial.print("000000");
+            } else if (change[i]<8) {
+              Serial.print("00000");
+            } else if (change[i]<16) {
+              Serial.print("0000");
+            } else if (change[i]<32) {
+              Serial.print("000");
+            } else if (change[i]<64) {
+              Serial.print("00");
+            } else if (change[i]<128) {
+              Serial.print("0");
+            }
+            Serial.print(change[i],BIN);
+          }
+          Serial.println(" Difference");
         }
-         // added to make non used bytes to 0
+        for(byte i = 0; i<len; i++){
+          prevrxBuf[i]=rxBuf[i];
+        }
         for(byte i = len; i<8; i++){
-          rxBuf[i] = 0;
+          prevrxBuf[i]=0;
         }
-        Serial.print(" Current - count:");
-        Serial.println(counter);
-        counter=0;
-        Serial.print("              ");
-        for(byte i = 0; i<len; i++){
-          Serial.print(" ");
-          if (change[i]<2) {
-            Serial.print("0000000");
-          } else if (change[i]<4) {
-            Serial.print("000000");
-          } else if (change[i]<8) {
-            Serial.print("00000");
-          } else if (change[i]<16) {
-            Serial.print("0000");
-          } else if (change[i]<32) {
-            Serial.print("000");
-          } else if (change[i]<64) {
-            Serial.print("00");
-          } else if (change[i]<128) {
-            Serial.print("0");
-          }
-          Serial.print(change[i],BIN);
-        }
-        Serial.println(" Difference");
-      }
-      for(byte i = 0; i<len; i++){
-        prevrxBuf[i]=rxBuf[i];
-      }
-      for(byte i = len; i<8; i++){
-        prevrxBuf[i]=0;
-      }
+      }  
     }
   }
 } //loop()
